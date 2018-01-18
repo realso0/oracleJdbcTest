@@ -22,8 +22,6 @@ public class BookVo {
 		this.stateCode = stateCode;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}

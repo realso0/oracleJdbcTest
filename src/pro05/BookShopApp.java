@@ -62,14 +62,35 @@ public class BookShopApp {
 		 * 여기에 입력받은 책번호와 일치하는  BookShopDao의 rent()를 호출하는 코드를 작성하세요.
 		 *  
 		 */
-
+		dao.rent(num);
+		
 		displayBookInfo();
 	}
 	
 	public static void displayBookInfo() {
 		System.out.println("*****도서 정보 출력하기******");
 		
+		List<BookVo> listAll = new BookShopDao().getListAll();
 
+		for(int i = 0; i < listAll.size(); i++) {
+			System.out.print("책 제목:" + listAll.get(i).getTitle());
+			if(listAll.get(i).getPubs() != null) {
+				System.out.print(", 출판사:" + listAll.get(i).getPubs());
+			}
+			if(listAll.get(i).getPubDate() != null) {
+				System.out.print(", 출판일:" + listAll.get(i).getPubDate());
+			}
+
+			System.out.print(", 작가:" + listAll.get(i).getAuthorName());
+			System.out.print(", 대여 유무:");
+
+			if(listAll.get(i).getStateCode().equals("0")) {
+				System.out.println("대여중");
+			}
+			else {
+				System.out.println("재고있음");
+			}
+		}
 	}	
 
 }

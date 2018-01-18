@@ -81,7 +81,7 @@ public class BookShopDao {
 					pstmt=conn.prepareStatement(query);
 					
 					pstmt.setInt(1, id);
-					rs = pstmt.executeQuery();
+					rs=pstmt.executeQuery();
 
 					while(rs.next()) {
 						System.out.println(rs.getString("title") + "이(가) 대여 됐습니다.");
@@ -96,6 +96,9 @@ public class BookShopDao {
 				} finally {
 					// 5. 자원정리
 					try {
+						if (rs != null) {
+							rs.close();
+						}
 						if (pstmt != null) {
 							pstmt.close();
 						}
@@ -115,7 +118,7 @@ public class BookShopDao {
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 
-				List<BookVo> listAll = new ArrayList<BookVo>();
+				List<BookVo> listAll=new ArrayList<BookVo>();
 
 				try {
 					// 1. JDBC 드라이버 (Oracle) 로딩
@@ -133,7 +136,6 @@ public class BookShopDao {
 									"        state_code " + 
 									" from bookshop ";
 					pstmt = conn.prepareStatement(query);
-
 					rs = pstmt.executeQuery(); 
 
 					// 4.결과처리
